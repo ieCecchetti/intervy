@@ -1,0 +1,18 @@
+# Ignore everything at root
+/*
+
+# Keep these
+!/.gitignore
+!/.claude/
+!/.claude/**
+!/docs/
+!/docs/**
+docs/superpowers/
+!/README.md
+
+# Ignore user-specific Claude settings
+.claude/settings.json
+
+# macOS
+.DS_Store
+**/.DS_Store
