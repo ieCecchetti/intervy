@@ -36,15 +36,50 @@ Just start a session and type anything like "interview", "practice", or "intervy
 | `intervy-score` | Evaluates and scores from-scratch interview rounds |
 | `intervy-questioner` | Fires language-specific deep-dive questions between rounds |
 
+## Requirements
+
+- [Claude Code](https://claude.ai/code) installed and authenticated
+
 ## Installation
 
-Clone this repo into any project's `.claude/skills/` folder (or your global `~/.claude/skills/`):
+Skills must live directly inside a `.claude/skills/` directory — either globally (`~/.claude/skills/`) so they work in every session, or inside a specific project (`.claude/skills/`) if you want them only there.
+
+### Global install (recommended)
 
 ```bash
-git clone https://github.com/ieCecchetti/intervy .claude/skills/intervy-suite
+git clone https://github.com/ieCecchetti/intervy /tmp/intervy-install
+cp -r /tmp/intervy-install/.claude/skills/* ~/.claude/skills/
+rm -rf /tmp/intervy-install
 ```
 
-Or clone individual skills as needed.
+### Project-level install
+
+Run this from the root of the project you want to use it in:
+
+```bash
+mkdir -p .claude/skills
+git clone https://github.com/ieCecchetti/intervy /tmp/intervy-install
+cp -r /tmp/intervy-install/.claude/skills/* .claude/skills/
+rm -rf /tmp/intervy-install
+```
+
+### Verify
+
+After installing, open Claude Code in any project and run:
+
+```
+/skills
+```
+
+You should see `intervy`, `intervy-problem`, `intervy-score`, and `intervy-questioner` listed.
+
+### Use it
+
+```
+> interview
+```
+
+Claude will present the three modes and walk you through setup.
 
 ## Structure
 
