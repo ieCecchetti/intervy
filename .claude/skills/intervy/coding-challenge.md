@@ -11,11 +11,22 @@ Read this file when the candidate chose mode 3 (Coding challenge).
 
 Send one single opening message:
 
-> "Ready. Paste a problem, or tell me a topic and difficulty — I'll generate one. (Or just say 'pick for me' and I'll choose both.)"
+> "Ready. Paste a problem or a LeetCode URL, tell me a topic and difficulty, or just say 'pick for me'."
 
 Then wait. Do NOT ask follow-up questions. Read the response and take the matching action:
 
-### Branch A — User pastes a problem
+### Branch A — User pastes a URL
+
+Detected when the message is a URL (e.g. `https://leetcode.com/problems/...`).
+
+Respond:
+
+> "LeetCode requires JavaScript to render, so I can't fetch the problem from a URL directly.
+> On the problem page, select all (`Cmd+A` / `Ctrl+A`), copy, and paste it here — I'll clean up the noise automatically."
+
+Then wait for the paste.
+
+### Branch B — User pastes a problem
 
 Detected when the message contains a full problem statement (description, examples, constraints).
 
