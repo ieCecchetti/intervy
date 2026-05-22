@@ -38,10 +38,9 @@ Generate a fresh problem on that topic at that difficulty. Requirements:
 - Has 2–3 concrete examples with input/output and explanation
 - Has constraints section
 
-Format the problem in context as:
+Generate the problem and display it to the candidate in this format:
 
 ```
-[PROBLEM]
 # <number>. <Title>
 
 **Difficulty:** <Easy | Medium | Hard>
@@ -62,8 +61,9 @@ Explanation: ...
 
 ## Constraints
 - ...
-[/PROBLEM]
 ```
+
+Also store it internally as `[PROBLEM]...[/PROBLEM]` for later use in the solution file.
 
 ### Branch B — Pasted problem
 
@@ -71,7 +71,7 @@ Ask: "Paste the problem now."
 
 Wait for the paste. Strip noise lines containing: "premium lock icon", "Companies", "Topics" (label alone), "premium", "lock icon".
 
-Format and store in context using the same `[PROBLEM]...[/PROBLEM]` block format as Branch A.
+Display the cleaned problem back to the candidate using the same format as Branch A, so they see the formatted version. Also store it internally as `[PROBLEM]...[/PROBLEM]`.
 
 ---
 
