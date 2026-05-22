@@ -9,36 +9,60 @@ Read this file when the candidate chose mode 3 (Coding challenge).
 
 ## Phase 1 — Problem Setup
 
-Ask:
+Send one single opening message:
 
-> "Would you like a **fresh** problem (I'll generate one for you) or do you have an **existing** one to paste?"
+> "Ready. Paste a problem, or tell me a topic and difficulty — I'll generate one. (Or just say 'pick for me' and I'll choose both.)"
 
-Wait for their answer, then follow the matching branch.
+Then wait. Do NOT ask follow-up questions. Read the response and take the matching action:
 
-### Branch A — Fresh problem
+### Branch A — User pastes a problem
 
-Ask:
+Detected when the message contains a full problem statement (description, examples, constraints).
 
-> "Which topic would you like to practice, or should I pick one for you?
->
-> Common topics: Array, Hash Map, Two Pointers, Sliding Window, Binary Search, Stack, Queue, Linked List, Tree, Graph, Dynamic Programming, Greedy, Sorting"
+Strip noise lines containing: "premium lock icon", "Companies", "Topics" (label alone), "premium", "lock icon".
 
-Wait for their answer. If they say "pick for you" or similar, choose a topic randomly from the list above.
+Display the cleaned problem to the candidate:
 
-Then ask:
+```
+# <number or inferred title>. <Title>
 
-> "What difficulty? Easy / Medium / Hard — or should I pick based on the topic?"
+**Difficulty:** <infer if visible, else omit>
+**Topics:** <infer if visible, else omit>
 
-If they say pick: Easy for any topic chosen for the first time in this session, Medium if they've already done an Easy on this topic in this session, Hard otherwise.
+## Description
+<description>
 
-Generate a fresh problem on that topic at that difficulty. Requirements:
+## Examples
+
+### Example 1
+Input: ...
+Output: ...
+Explanation: ...
+
+### Example 2
+...
+
+## Constraints
+- ...
+```
+
+Store it internally as `[PROBLEM]...[/PROBLEM]` for later use in the solution file.
+
+### Branch B — User specifies topic and/or difficulty
+
+Detected when the message names a topic ("hash map", "DP", "sliding window", etc.) or difficulty ("easy", "medium", "hard"), or says "pick for me".
+
+- If topic is missing: pick one randomly from Array, Hash Map, Two Pointers, Sliding Window, Binary Search, Stack, Queue, Linked List, Tree, Graph, Dynamic Programming, Greedy, Sorting.
+- If difficulty is missing: pick Easy for a topic not yet done this session, Medium if already done Easy on it, Hard otherwise.
+
+Generate a fresh problem. Requirements:
 - Original — not a well-known LeetCode problem by name, but structurally similar in style
-- Has a clear title and problem number (make up a 4-digit number, e.g. 3041)
+- Has a clear title and a made-up 4-digit problem number (e.g. 3041)
 - Solvable in Python
 - Has 2–3 concrete examples with input/output and explanation
 - Has constraints section
 
-Generate the problem and display it to the candidate in this format:
+Display it to the candidate:
 
 ```
 # <number>. <Title>
@@ -63,15 +87,7 @@ Explanation: ...
 - ...
 ```
 
-Also store it internally as `[PROBLEM]...[/PROBLEM]` for later use in the solution file.
-
-### Branch B — Pasted problem
-
-Ask: "Paste the problem now."
-
-Wait for the paste. Strip noise lines containing: "premium lock icon", "Companies", "Topics" (label alone), "premium", "lock icon".
-
-Display the cleaned problem back to the candidate using the same format as Branch A, so they see the formatted version. Also store it internally as `[PROBLEM]...[/PROBLEM]`.
+Store it internally as `[PROBLEM]...[/PROBLEM]` for later use in the solution file.
 
 ---
 
