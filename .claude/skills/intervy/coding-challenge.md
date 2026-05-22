@@ -126,10 +126,10 @@ Then say:
 Create a directory and solution file:
 
 ```bash
-mkdir -p ./coding_challenges
+mkdir -p ./problems
 ```
 
-Create `./coding_challenges/<number>_<snake_case_title>.py` (e.g. `3041_max_subarray_product.py`) with this structure:
+Create `./problems/<number>_<snake_case_title>.py` (e.g. `3041_max_subarray_product.py`) with this structure:
 
 ```python
 """
@@ -156,7 +156,7 @@ Infer `method_name`, `params`, and `return_type` from the problem. Extract examp
 
 Then tell the candidate:
 
-> **Problem ready.** Open `./coding_challenges/<filename>.py` — the problem is in the docstring.
+> **Problem ready.** Open `./problems/<filename>.py` — the problem is in the docstring.
 > When you're ready, start coding.
 > Type **"hint"** if you get stuck.
 > Tell me **"done"** when you want to be scored.
@@ -181,7 +181,7 @@ Track hints given in context as a simple count: **Hints used: N**
 
 ## Phase 6 — Edge Case Testing (inline)
 
-Read the candidate's solution from `./coding_challenges/<filename>.py`.
+Read the candidate's solution from `./problems/<filename>.py`.
 
 Run edge case testing inline — no subagent:
 
