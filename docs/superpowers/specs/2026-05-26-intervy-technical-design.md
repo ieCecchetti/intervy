@@ -158,6 +158,36 @@ in sequence. The sub-file:
 > instead of broad coverage). Questions must reflect current industry relevance —
 > do not ask about patterns or tools that are no longer in common use.
 
+### Follow-up Decision Contract (applies to all panelists)
+
+After each candidate answer, the panelist decides whether to follow up using three
+independent factors combined:
+
+#### 1. Answer clarity (primary driver)
+
+- Clear, precise, complete → follow-up unlikely unless personality demands it
+- Vague, buzzword-heavy, or partial → follow-up likely
+- "I don't know" / blank → no follow-up, score 0, move on immediately
+
+#### 2. Personality modifier
+
+- Adversarial / Frustrated: follow-up even on good answers — they want to find the edge
+- Curious / Coaching: follow-up on interesting answers to go deeper, not to penalise
+- Bored / Disengaged: skips follow-ups unless the answer was exceptionally poor
+- Neutral / Analytical: follows up only when precision is genuinely missing
+- Friendly / Relaxed: rarely follows up — moves the conversation forward
+
+#### 3. Random factor
+
+A small random element is always present. A solid answer may still get a follow-up.
+A weak answer may occasionally get a pass. This reflects the unpredictability of real
+interviewers and prevents the candidate from gaming the system by pattern-matching
+to a formula. The random factor is never the dominant force — it only tips ambiguous
+cases either way.
+
+Follow-up depth also varies: adversarial/frustrated panelists follow up harder;
+coaching/curious ones follow up to open, not to trap.
+
 ---
 
 ## 7. Panelist Details
@@ -184,8 +214,11 @@ in sequence. The sub-file:
 
 ### Tech Lead (40 pts)
 - Domain: technical depth — covers 4–5 topic areas per session, never all of them.
-  Which areas are covered depends on what's relevant to the company context and the
-  candidate's answers. Areas include but are not limited to:
+  Which areas are selected depends on: (1) company context (a fintech with Kafka →
+  event streaming is in; a 3-person seed startup → skip complex infra), (2) the
+  candidate's declared stack, and (3) the tech lead's personality (adversarial goes
+  deep on 1–2 weak spots; bored skips areas the candidate handles confidently).
+  Areas include but are not limited to:
   - Web fundamentals and rendering strategies
   - Async / concurrency models
   - Language and framework internals (calibrated to chosen stack)
@@ -227,9 +260,11 @@ in sequence. The sub-file:
 ## 8. Scoring
 
 ### Per-panelist
+
 Each scoring panelist (all except Handler) awards 0–10 for their domain.
 Personality affects strictness directly — it is not a post-hoc modifier.
-Each panelist also records a 1–2 sentence opinion in their own voice.
+Each panelist records a 1–2 sentence opinion in their own voice at the end of their
+segment. These scores and opinions are stored in the conversation context.
 
 ### Weighted final score
 
@@ -243,7 +278,19 @@ Each panelist also records a 1–2 sentence opinion in their own voice.
 | CTO | 15 |
 | **Total** | **100** |
 
-### Final report (produced by `SKILL.md` after CTO segment)
+### Final scoring — delegated to `intervy-score`
+
+After the CTO segment, `intervy-technical/SKILL.md` hands off to `intervy-score`.
+
+`intervy-score/SKILL.md` is a **router**: it reads the conversation context to detect
+which scoring mode to use, then delegates to the matching sub-file:
+
+| Context detected | Sub-file invoked |
+| --- | --- |
+| Single-interviewer session (from-scratch, coding challenge, code review) | existing scoring logic (current behaviour) |
+| Multi-panel session (round-table interview) | `multiple-panel-score.md` ← NEW |
+
+`intervy-score/multiple-panel-score.md` owns the full panel verdict logic:
 
 ```
 ─────────────────────────────────────────
@@ -316,7 +363,7 @@ panelist file.
 ## 10. Files to Create / Modify
 
 | Action | File |
-|---|---|
+| --- | --- |
 | CREATE | `intervy-technical/SKILL.md` |
 | CREATE | `intervy-technical/handler.md` |
 | CREATE | `intervy-technical/hr.md` |
@@ -326,8 +373,10 @@ panelist file.
 | CREATE | `intervy-technical/dev.md` |
 | CREATE | `intervy-technical/cto.md` |
 | CREATE | `intervy-scenario/context.md` |
+| CREATE | `intervy-score/multiple-panel-score.md` |
 | RENAME | `intervy-problem/` → `intervy-scenario/` |
 | MODIFY | `intervy-scenario/SKILL.md` — invoke context.md first |
 | MODIFY | `intervy-scenario/scaffold.md` — read context from conversation |
+| MODIFY | `intervy-score/SKILL.md` — add router logic (single vs multi-panel) |
 | MODIFY | `intervy/SKILL.md` — add option 4 |
 | MODIFY | `intervy/from-scratch.md` — invoke intervy-scenario |
