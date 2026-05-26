@@ -7,7 +7,9 @@
 !/.claude/**
 !/docs/
 !/docs/**
-docs/superpowers/
+docs/superpowers/*
+!docs/superpowers/specs
+!docs/superpowers/specs/**
 !/README.md
 
 # Ignore user-specific Claude settings
