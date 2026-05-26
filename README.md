@@ -27,10 +27,10 @@ Just start a session and type anything like "interview", "practice", or "intervy
 
 ## Documentation
 
-- [Assignment Review](docs/assignment-review.md) — seniority-calibrated code walkthrough, scored 0–100
-- [From Scratch](docs/from-scratch.md) — FAANG-style live coding rounds, Bootstrap through Expert
-- [Coding Challenge](docs/coding-challenge.md) — LeetCode-style problem session with hints and edge case testing
-- [Round-Table Interview](docs/round-table.md) — 7-panelist panel interview with personality system and merged verdict
+- [intervy-code-review](docs/intervy-code-review.md) — seniority-calibrated code walkthrough, scored 0–100
+- [intervy-from-scratch](docs/intervy-from-scratch.md) — FAANG-style live coding rounds, Bootstrap through Expert
+- [intervy-coding-challenge](docs/intervy-coding-challenge.md) — LeetCode-style problem session with hints and edge case testing
+- [intervy-technical](docs/intervy-technical.md) — 7-panelist panel interview with personality system and merged verdict
 
 ## Skills
 
@@ -97,8 +97,8 @@ Claude will present the three modes and walk you through setup.
   intervy-score/        ← round evaluator — single and multi-panel
   intervy-questioner/   ← theory question bank (standalone)
 docs/
-  assignment-review.md  ← assignment review mode guide
-  from-scratch.md       ← from scratch interview guide
-  coding-challenge.md   ← coding challenge mode guide
-  round-table.md        ← round-table interview guide
+  intervy-code-review.md      ← assignment review mode guide
+  intervy-from-scratch.md     ← from scratch interview guide
+  intervy-coding-challenge.md ← coding challenge mode guide
+  intervy-technical.md        ← round-table interview guide
 ```
