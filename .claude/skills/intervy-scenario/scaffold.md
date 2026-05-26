@@ -1,6 +1,6 @@
 # scaffold — Single-File App Generator
 
-Private sub-file for `intervy-problem`. Not a standalone skill.
+Private sub-file for `intervy-scenario`. Not a standalone skill.
 Read this file when Mode B is chosen to generate the single-file app.
 
 ---
@@ -11,7 +11,7 @@ Read this file when Mode B is chosen to generate the single-file app.
 
 - Entity names, route paths, and field names MUST come from the story
 - Example: a boat rental story → `Vessel`, `/vessels`, `rental_price` — NEVER `Item`, `/items`
-- All names must be consistent with the story output from `intervy-problem`
+- All names must be consistent with the story output from `intervy-scenario`
 
 ### Language-aware output
 

@@ -37,9 +37,9 @@ Once the candidate selects a language, say:
 
 > *Generating your project scenario...*
 
-Then invoke the skill **`intervy-problem`**, passing the chosen language as context so it tailors the story to the tech stack.
+Then invoke the skill **`intervy-scenario`**, passing the chosen language as context so it tailors the story to the tech stack.
 
-`intervy-problem` will output a complete story block. Present it to the candidate as-is.
+`intervy-scenario` will output a complete story block. Present it to the candidate as-is.
 
 ---
 
@@ -59,5 +59,5 @@ The sub-file will find the story already in the conversation context and use it 
 ## Rules
 
 - Never run the interview phases yourself — always delegate to the appropriate sub-file.
-- Never skip story generation — `intervy-problem` must run first.
+- Never skip story generation — `intervy-scenario` must run first.
 - If the candidate requests an unsupported language, say so clearly and list what's available.

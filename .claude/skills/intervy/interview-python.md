@@ -1,6 +1,6 @@
 ---
 name: intervy-interview-python
-description: Use when conducting the Python phase of a live coding interview simulation. Invoked by intervy-project after intervy-problem has generated the story. Covers FastAPI/Flask, Pydantic, SQLAlchemy, async patterns, and production hardening.
+description: Use when conducting the Python phase of a live coding interview simulation. Invoked by intervy-project after intervy-scenario has generated the story. Covers FastAPI/Flask, Pydantic, SQLAlchemy, async patterns, and production hardening.
 ---
 
 # intervy-interview-python — Python Live Coding Interview
@@ -53,7 +53,7 @@ Wait for "start" before continuing.
 
 ## Phase 1 — Project Bootstrap
 
-**Check the conversation context for the Interviewer note from `intervy-problem`:**
+**Check the conversation context for the Interviewer note from `intervy-scenario`:**
 
 - If `Mode: RESTRUCTURE` is present → run **Phase 1-B** (below)
 - Otherwise → run **Phase 1-A** (existing behaviour below)

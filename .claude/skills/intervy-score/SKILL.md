@@ -5,6 +5,15 @@ description: Use when a candidate requests their score or evaluation at any poin
 
 # intervy-score — Interview Evaluator
 
+## Step 0 — Detect Session Type
+
+Read the conversation context and check for the presence of `[PANEL SETUP — internal]`.
+
+- If found → this is a multi-panel session. Read `multiple-panel-score.md` and follow it. Stop here.
+- If not found → this is a single-interviewer session. Continue to Step 1 below.
+
+---
+
 ## Overview
 
 The candidate stopped here — by choice or because they ran out of time. That is completely fine.

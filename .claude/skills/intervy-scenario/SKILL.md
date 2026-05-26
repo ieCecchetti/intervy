@@ -1,9 +1,20 @@
 ---
-name: intervy-problem
-description: Use when generating a language-aware project story/scenario for a live coding interview simulation. Invoked by intervy-project before delegating to an interview skill.
+name: intervy-scenario
+description: Use when generating a language-aware company scenario for a live coding interview simulation. Invoked by intervy from-scratch mode before delegating to an interview skill.
 ---
 
-# intervy-problem — Interview Story Generator
+# intervy-scenario — Interview Scenario Generator
+
+## Step 1 — Generate Company Context
+
+Before generating the story, read `context.md` (the private sub-file in this skill's folder)
+and generate the company context block. The context block is presented to the candidate as
+their briefing and stays in the conversation for all subsequent steps.
+
+The story template below uses the company name, domain, stack, and pressure already
+established in the context block — do not re-invent them.
+
+---
 
 ## Randomization Contract
 
