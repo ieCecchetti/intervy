@@ -304,6 +304,12 @@ Comment bonus/penalty (applied after hints, capped at ±1):
 - 0: comments present but superficial
 - −1: no comments, or comments only restate what the code does
 
+Complexity accuracy penalty (applied after comments, capped at −2 total):
+
+- −1 for each complexity dimension (time, space) where the candidate's stated complexity is wrong.
+- Wrong means factually incorrect — e.g. saying O(N) space when the structure is bounded by a constant alphabet size (O(1)), or claiming O(N) time when the dominant step is O(N log N).
+- "Suboptimal but correct" (e.g. saying O(N²) when O(N) was achievable) does NOT trigger this penalty — optimality is already covered by the base score.
+
 Incomplete penalty: if `incomplete = true`, apply −2 after all other adjustments (floor at 1).
 
 **Step 4 — Show the breakdown:**
