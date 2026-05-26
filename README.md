@@ -1,16 +1,23 @@
 # Intervy — AI Interview Coach
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Claude Code](https://img.shields.io/badge/Claude%20Code-skill-blueviolet)](https://claude.ai/code)
+[![GitHub stars](https://img.shields.io/github/stars/ieCecchetti/intervy?style=social)](https://github.com/ieCecchetti/intervy/stargazers)
+
 A Claude Code skill set that prepares you for technical interviews across four modes.
 
 ## Modes
 
 ### 1. Assignment Review
+
 Paste a project or give a git clone URL. Conducts a seniority-calibrated technical interview on your code — architecture, failure modes, security, testing, production readiness. Scored 0–100.
 
 ### 2. From Scratch
+
 Build a backend API from scratch under time pressure, FAANG-style. Supports Python (FastAPI/Flask) and Java Spring Boot. Generates a randomised business scenario, runs you through theory and coding rounds, scores each phase.
 
 ### 3. Coding Challenge
+
 LeetCode-style algorithm practice. Generate a fresh problem or paste one. Hints available on demand, edge case testing, scored 1–10 with complexity and comment analysis.
 
 ### 4. Round-Table Interview
@@ -21,7 +28,7 @@ Face a full panel of 7 interviewers: handler, HR, manager, tech lead, architect,
 
 Just start a session and type anything like "interview", "practice", or "intervy". The `intervy` skill picks it up and walks you through mode selection.
 
-```
+```text
 > interview
 ```
 
@@ -73,7 +80,7 @@ rm -rf /tmp/intervy-install
 
 After installing, open Claude Code in any project and run:
 
-```
+```text
 /skills
 ```
 
@@ -81,15 +88,15 @@ You should see `intervy`, `intervy-scenario`, `intervy-technical`, `intervy-scor
 
 ### Use it
 
-```
+```text
 > interview
 ```
 
-Claude will present the three modes and walk you through setup.
+Claude will present the four modes and walk you through setup.
 
 ## Structure
 
-```
+```text
 .claude/skills/
   intervy/              ← dispatcher + sub-files for all 4 modes
   intervy-scenario/     ← company context + story generator (shared)

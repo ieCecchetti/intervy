@@ -13,6 +13,7 @@ docs/superpowers/*
 !docs/superpowers/plans
 !docs/superpowers/plans/**
 !/README.md
+!/LICENSE
 
 # Ignore user-specific Claude settings
 .claude/settings.json
