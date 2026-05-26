@@ -10,6 +10,8 @@
 docs/superpowers/*
 !docs/superpowers/specs
 !docs/superpowers/specs/**
+!docs/superpowers/plans
+!docs/superpowers/plans/**
 !/README.md
 
 # Ignore user-specific Claude settings
