@@ -39,7 +39,7 @@ Detected when the message contains a full problem statement (description, exampl
 
 Strip noise lines containing: "premium lock icon", "Companies", "Topics" (label alone), "premium", "lock icon".
 
-Display the cleaned problem to the candidate:
+Display the cleaned problem to the candidate — **do NOT show the Constraints section yet**:
 
 ```
 # <number or inferred title>. <Title>
@@ -59,12 +59,9 @@ Explanation: ...
 
 ### Example 2
 ...
-
-## Constraints
-- ...
 ```
 
-Store it internally as `[PROBLEM]...[/PROBLEM]` for later use in the solution file.
+Store the full problem (including constraints) internally as `[PROBLEM]...[/PROBLEM]` for later use in the solution file. Also store the constraints list separately in context as `[CONSTRAINTS]- ...[/CONSTRAINTS]` so Phase 3 can track them.
 
 ### Branch B — User specifies topic and/or difficulty
 
@@ -80,7 +77,7 @@ Generate a fresh problem. Requirements:
 - Has 2–3 concrete examples with input/output and explanation
 - Has constraints section
 
-Display it to the candidate:
+Display it to the candidate — **do NOT show the Constraints section yet**:
 
 ```
 # <number>. <Title>
@@ -100,12 +97,9 @@ Explanation: ...
 
 ### Example 2
 ...
-
-## Constraints
-- ...
 ```
 
-Store it internally as `[PROBLEM]...[/PROBLEM]` for later use in the solution file.
+Store the full problem (including constraints) internally as `[PROBLEM]...[/PROBLEM]` for later use in the solution file. Also store the constraints list separately in context as `[CONSTRAINTS]- ...[/CONSTRAINTS]` so Phase 3 can track them.
 
 ---
 
@@ -154,7 +148,28 @@ Say:
 
 Play the role of interviewer. Answer only what a real interviewer would: clarify ambiguous constraints, confirm input ranges, confirm whether input is guaranteed valid, confirm expected output type. Do NOT give hints or reveal the approach.
 
+**Constraint tracking (internal):** As the candidate asks questions, silently compare each question against `[CONSTRAINTS]`. If a question directly uncovers or probes a constraint (e.g., asking about input size, value range, whether input can be empty, guaranteed valid input), mark that constraint as hit. Track hits in context:
+
+```text
+[CONSTRAINT TRACKING]
+hit: - <constraint text>
+hit: - <constraint text>
+...
+[/CONSTRAINT TRACKING]
+```
+
 Keep going until the candidate signals they're ready (e.g. "no", "I'm good", "let's go").
+
+**Constraint reveal (at end of Phase 3):** Before moving on, always reveal the full constraints list and evaluate:
+
+> "Here are the constraints for this problem:
+> [paste full constraints list]"
+
+Then apply exactly one of:
+
+- **All hit** (candidate asked about every constraint): add `"> Great — you asked about all of them. **+1 constraint bonus.**"` and record `constraint_bonus = +1` in context.
+- **Some hit**: just show the list. No bonus, no penalty. Record `constraint_bonus = 0`.
+- **None hit** (candidate asked zero constraint questions): add `"> You didn't ask about any constraints — that's a habit worth building. **−1.**"` and record `constraint_bonus = -1` in context.
 
 Then say:
 
@@ -324,6 +339,10 @@ Complexity accuracy penalty (applied after comments, capped at −2 total):
 - −1 for each complexity dimension (time, space) where the candidate's stated complexity is wrong.
 - Wrong means factually incorrect — e.g. saying O(N) space when the structure is bounded by a constant alphabet size (O(1)), or claiming O(N) time when the dominant step is O(N log N).
 - "Suboptimal but correct" (e.g. saying O(N²) when O(N) was achievable) does NOT trigger this penalty — optimality is already covered by the base score.
+
+Constraint bonus/penalty (applied after complexity accuracy, before incomplete):
+
+- Apply `constraint_bonus` from context (+1, 0, or −1).
 
 Incomplete penalty: if `incomplete = true`, apply −2 after all other adjustments (floor at 1).
 
