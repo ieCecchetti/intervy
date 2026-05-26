@@ -299,10 +299,15 @@ Hint deductions (from **Hints used** count in context):
 - Medium: 1 free hint — deduct 1 per hint beyond the first (max −3)
 - Hard: 2 free hints — deduct 1 per hint beyond the second (max −3)
 
-Comment bonus/penalty (applied after hints, capped at ±1):
-- +1: comments clearly explain reasoning at key steps
-- 0: comments present but superficial
-- −1: no comments, or comments only restate what the code does
+Comment bonus/penalty (applied after hints):
+
+To assign the category, apply this test: can you quote at least one comment that states *why* — a data structure choice, a complexity implication, an edge case being handled, or a non-obvious invariant? If not, it is restate-only regardless of how many comments are present.
+
+| Category | Easy | Medium | Hard |
+|---|---|---|---|
+| Explains *why* at key steps | +1 | +1 | +1 |
+| Comments present but superficial | −1 | 0 | 0 |
+| Restate-only or no comments | −2 | −1 | −1 |
 
 Complexity accuracy penalty (applied after comments, capped at −2 total):
 
