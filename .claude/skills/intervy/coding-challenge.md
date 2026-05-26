@@ -277,7 +277,19 @@ Tip: <one sentence — what kind of case this is, no solution spoiler>
 
 Wait for their answer.
 
-**Step 2 — Evaluate:**
+**Step 2 — Comment follow-up (before scoring):**
+
+Read the solution file. Apply the comment test: can you quote at least one comment that states *why* — a data structure choice, a complexity implication, an edge case being handled, or a non-obvious invariant?
+
+- If **yes**: skip this step, proceed to Step 3.
+- If **no**: ask 1–2 targeted follow-up questions out loud before scoring. Pick the most important unexplained decisions in the code — data structure choice, a key condition, an index trick. Example questions:
+  - "Why did you use a set here instead of a list?"
+  - "Why does adding 32 to the ordinal work for both cases?"
+  - "What happens if the input is empty — did you think about that?"
+
+  Wait for their answers. Their verbal explanation counts toward the comment score — treat it the same as a written comment. If they explain the *why* clearly, upgrade the category. If they can't, the written comments stand as-is.
+
+**Step 3 — Evaluate:**
 
 Read the solution file and the oracle block from context. Assess:
 
@@ -285,9 +297,9 @@ Read the solution file and the oracle block from context. Assess:
 2. **Time complexity** — is their stated complexity correct? Is it optimal vs oracle?
 3. **Space complexity** — is their stated complexity correct? Is it optimal vs oracle?
 4. **Code quality** — brief note on readability, naming, structure.
-5. **Comments** — do they explain *why* at key steps (data structure choice, edge case awareness, complexity trade-offs), or just restate what the code does?
+5. **Comments** — based on written comments plus any verbal answers from Step 2.
 
-**Step 3 — Score:**
+**Step 4 — Score:**
 
 Base score from optimality:
 - Optimal solution = 10
@@ -300,8 +312,6 @@ Hint deductions (from **Hints used** count in context):
 - Hard: 2 free hints — deduct 1 per hint beyond the second (max −3)
 
 Comment bonus/penalty (applied after hints):
-
-To assign the category, apply this test: can you quote at least one comment that states *why* — a data structure choice, a complexity implication, an edge case being handled, or a non-obvious invariant? If not, it is restate-only regardless of how many comments are present.
 
 | Category | Easy | Medium | Hard |
 |---|---|---|---|
@@ -317,7 +327,7 @@ Complexity accuracy penalty (applied after comments, capped at −2 total):
 
 Incomplete penalty: if `incomplete = true`, apply −2 after all other adjustments (floor at 1).
 
-**Step 4 — Show the breakdown:**
+**Step 6 — Show the breakdown:**
 
 Present clearly, e.g.:
 
