@@ -1,6 +1,6 @@
 # Intervy — AI Interview Coach
 
-A Claude Code skill set that prepares you for technical interviews across three modes.
+A Claude Code skill set that prepares you for technical interviews across four modes.
 
 ## Modes
 
@@ -12,6 +12,10 @@ Build a backend API from scratch under time pressure, FAANG-style. Supports Pyth
 
 ### 3. Coding Challenge
 LeetCode-style algorithm practice. Generate a fresh problem or paste one. Hints available on demand, edge case testing, scored 1–10 with complexity and comment analysis.
+
+### 4. Round-Table Interview
+
+Face a full panel of 7 interviewers: handler, HR, manager, tech lead, architect, senior dev, and CTO. Each panelist gets a randomly assigned personality (adversarial, bored, friendly, coaching, and more) that affects how they question you and how harshly they score. Questions are generated fresh every session, anchored in a randomised company context. Scored out of 100 with a merged panel verdict at the end.
 
 ## Usage
 
@@ -26,14 +30,16 @@ Just start a session and type anything like "interview", "practice", or "intervy
 - [Assignment Review](docs/assignment-review.md) — seniority-calibrated code walkthrough, scored 0–100
 - [From Scratch](docs/from-scratch.md) — FAANG-style live coding rounds, Bootstrap through Expert
 - [Coding Challenge](docs/coding-challenge.md) — LeetCode-style problem session with hints and edge case testing
+- [Round-Table Interview](docs/round-table.md) — 7-panelist panel interview with personality system and merged verdict
 
 ## Skills
 
 | Skill | Role |
 | --- | --- |
-| `intervy` | Main entry point — dispatcher for all 3 modes |
-| `intervy-problem` | Generates randomised project scenarios for from-scratch mode |
-| `intervy-score` | Evaluates and scores from-scratch interview rounds |
+| `intervy` | Main entry point — dispatcher for all 4 modes |
+| `intervy-scenario` | Generates randomised company scenarios (used by from-scratch and round-table) |
+| `intervy-technical` | Round-table panel interview — 7 panelists, personality system, dynamic follow-ups |
+| `intervy-score` | Evaluates and scores interviews — single-interviewer and multi-panel modes |
 | `intervy-questioner` | Fires language-specific deep-dive questions between rounds |
 
 ## Requirements
@@ -71,7 +77,7 @@ After installing, open Claude Code in any project and run:
 /skills
 ```
 
-You should see `intervy`, `intervy-problem`, `intervy-score`, and `intervy-questioner` listed.
+You should see `intervy`, `intervy-scenario`, `intervy-technical`, `intervy-score`, and `intervy-questioner` listed.
 
 ### Use it
 
@@ -85,12 +91,14 @@ Claude will present the three modes and walk you through setup.
 
 ```
 .claude/skills/
-  intervy/              ← dispatcher + sub-files for all 3 modes
-  intervy-problem/      ← story/scenario generator (standalone)
-  intervy-score/        ← round evaluator (standalone)
+  intervy/              ← dispatcher + sub-files for all 4 modes
+  intervy-scenario/     ← company context + story generator (shared)
+  intervy-technical/    ← round-table panel interview (7 panelists)
+  intervy-score/        ← round evaluator — single and multi-panel
   intervy-questioner/   ← theory question bank (standalone)
 docs/
   assignment-review.md  ← assignment review mode guide
   from-scratch.md       ← from scratch interview guide
   coding-challenge.md   ← coding challenge mode guide
+  round-table.md        ← round-table interview guide
 ```
