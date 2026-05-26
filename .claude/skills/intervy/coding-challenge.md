@@ -19,12 +19,19 @@ Then wait. Do NOT ask follow-up questions. Read the response and take the matchi
 
 Detected when the message is a URL (e.g. `https://leetcode.com/problems/...`).
 
-Respond:
+Run the scraper script (Playwright headless browser — no manual copy-paste needed):
 
-> "LeetCode requires JavaScript to render, so I can't fetch the problem from a URL directly.
-> On the problem page, select all (`Cmd+A` / `Ctrl+A`), copy, and paste it here — I'll clean up the noise automatically."
+```bash
+python3 .claude/skills/intervy/lc_scrape.py <url>
+```
+
+If the script fails (missing dependency, timeout, selector not found), fall back:
+
+> "I couldn't fetch the problem automatically. On the problem page, select all (`Cmd+A` / `Ctrl+A`), copy, and paste it here — I'll clean up the noise."
 
 Then wait for the paste.
+
+On success, treat the output as the raw problem content and proceed directly to Branch B parsing logic.
 
 ### Branch B — User pastes a problem
 
