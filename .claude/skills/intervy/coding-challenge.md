@@ -286,6 +286,13 @@ Tip: <one sentence — what kind of case this is, no solution spoiler>
 
 ## Phase 6.5 — Alternative Challenge
 
+**CRITICAL — oracle protection applies here too:**
+
+- Do NOT output the alternative solution, its complexity, its key insight, or any hints.
+- Reason about what the alternative is entirely in your head — never in your visible response.
+- The challenge question must name only the *technique* (e.g. "iterative with an explicit stack"), never the implementation.
+- If you catch yourself about to show code or pseudocode for the alternative, stop immediately.
+
 **Check oracle silently:** Is there a meaningfully different alternative approach to this problem? Examples:
 - Recursive → iterative (different execution model)
 - Brute force → optimised algorithm (different technique, not just a constant factor)
