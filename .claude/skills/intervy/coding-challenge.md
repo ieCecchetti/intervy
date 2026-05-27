@@ -266,7 +266,7 @@ Tip: <one sentence — what kind of case this is, no solution spoiler>
 [/TEST RESULTS]
 ```
 
-**If ALL_PASS:** tell the candidate "All edge cases passed. Let's score you." then go to Phase 7.
+**If ALL_PASS:** tell the candidate "All edge cases passed." then go to Phase 6.5.
 
 **If SOME_FAIL:** show the candidate:
 
@@ -279,8 +279,41 @@ Tip: <one sentence — what kind of case this is, no solution spoiler>
 > - **Yes** → I'll score you now (the incomplete solution will affect your score).
 > - **No** → Take your time and fix it. Tell me **"done"** again when you're ready."
 
-- If **Yes**: set flag `incomplete = true` in context, go to Phase 7.
+- If **Yes**: set flag `incomplete = true` in context, go to Phase 6.5.
 - If **No**: wait for "done", then re-run Phase 6 from scratch.
+
+---
+
+## Phase 6.5 — Alternative Challenge
+
+**Check oracle silently:** Is there a meaningfully different alternative approach to this problem? Examples:
+- Recursive → iterative (different execution model)
+- Brute force → optimised algorithm (different technique, not just a constant factor)
+- Different data structure that changes the complexity class
+
+If **no meaningful alternative exists**: skip directly to Phase 7.
+
+If **yes**:
+
+Present the challenge:
+
+> "Your solution works. Before I score you — a follow-up question: [challenge question, e.g. 'Can you implement an iterative version using an explicit stack?'].
+> - **Try it** — add a new method `<suggested_name>` (e.g. `inorderTraversalIterative`) below your current solution in the same file. Tell me **"done"** when ready.
+> - **Skip** — I'll score you now."
+
+**If candidate skips:** set `challenge = "skipped"` in context. Go to Phase 7.
+
+**If candidate tries:**
+1. Wait for "done".
+2. Re-run Phase 6 edge case testing on the **new method only**.
+3. **If all cases pass:** set `challenge = "completed"` in context. Go to Phase 7 — score against the new method.
+4. **If cases fail:**
+
+   > "The alternative has failing cases. I'll evaluate your original solution."
+
+   Set `challenge = "failed"` in context. Go to Phase 7 — score against the original method.
+
+No further follow-up challenges after this phase — proceed to Phase 7 regardless of outcome.
 
 ---
 
@@ -340,9 +373,17 @@ Complexity accuracy penalty (applied after comments, capped at −2 total):
 - Wrong means factually incorrect — e.g. saying O(N) space when the structure is bounded by a constant alphabet size (O(1)), or claiming O(N) time when the dominant step is O(N log N).
 - "Suboptimal but correct" (e.g. saying O(N²) when O(N) was achievable) does NOT trigger this penalty — optimality is already covered by the base score.
 
-Constraint bonus/penalty (applied after complexity accuracy, before incomplete):
+Constraint bonus/penalty (applied after complexity accuracy, before challenge):
 
 - Apply `constraint_bonus` from context (+1, 0, or −1).
+
+Challenge adjustment (applied after constraint bonus, before incomplete):
+
+| `challenge` | Easy | Medium | Hard |
+|---|---|---|---|
+| `"skipped"` | −3 | −2 | −1 |
+| `"failed"` | −2 | −1 | 0 |
+| `"completed"` or not set | 0 | 0 | 0 |
 
 Incomplete penalty: if `incomplete = true`, apply −2 after all other adjustments (floor at 1).
 
