@@ -302,11 +302,13 @@ If **no meaningful alternative exists**: skip directly to Phase 7.
 
 If **yes**:
 
-Present the challenge:
+Use the `AskUserQuestion` tool to present the follow-up as an interactive choice:
 
-> "Your solution works. Before I score you — a follow-up question: [challenge question, e.g. 'Can you implement an iterative version using an explicit stack?'].
-> - **Try it** — add a new method `<suggested_name>` (e.g. `inorderTraversalIterative`) below your current solution in the same file. Tell me **"done"** when ready.
-> - **Skip** — I'll score you now."
+- Question: `"All edge cases passed. Before I score you — a follow-up: [challenge question, e.g. 'Can you implement an iterative version using an explicit stack?']"`
+- Header: `"Follow-up"`
+- Options:
+  1. Label: `"Try it"` — Description: `"Add a new method <suggested_name> below your current solution in the same file. Tell me 'done' when ready — I'll run the tests and score you on the better approach."`
+  2. Label: `"Skip"` — Description: `"Proceed to scoring now."`
 
 **If candidate skips:** set `challenge = "skipped"` in context. Go to Phase 7.
 
